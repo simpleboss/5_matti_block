@@ -30,10 +30,12 @@
 # [질/답] [제출 현황] [푼 후(1)]
 # [ 채 점 ] [홈으로]  [뒤 로]
 
+# build front and side look
 front_look = [[0, 0, 0, 0] for i in range(4)]
 side_look = [[0, 0, 0, 0] for i in range(4)]
 
 
+# display front and side look
 def print_look():
     i = 0
     while i < len(front_look):
@@ -47,11 +49,12 @@ def print_look():
         i += 1
 
 
+# input
 front_list = [2, 0, 3, 1]
 side_list = [1, 1, 2, 3]
 
 
-# 1st floor calculation
+# each floor maximum height calculation and remove 1 from two lists
 def max_floor_calculation():
     i = 0
     while i < len(front_list):
@@ -72,12 +75,14 @@ def max_floor_calculation():
         i += 1
 
 
+# display result of loop for maximum height
 while 1 in front_list and 1 in side_list:
     print('==============')
     max_floor_calculation()
     print_look()
     print(front_list, side_list)
 
+# print maximum height
 max_result = 0
 for i in front_look:
     for j in i:
