@@ -62,7 +62,7 @@ def max_floor_calculation():
         while j < len(side_list):
             if front_list[i] >= 1 and side_list[j] >= 1:
                 front_look[i][j] += 1
-                side_look[j][i] += 1
+                side_look[j][len(side_list)-1-i] += 1
             j += 1
         i += 1
 
@@ -88,3 +88,7 @@ for i in front_look:
     for j in i:
         max_result += j
 print("max_result ="+str(max_result))
+
+# minimum
+for requirement_1 in front_list:
+    continue
