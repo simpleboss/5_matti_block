@@ -95,11 +95,14 @@ print("max_result ="+str(max_result))
 i = 0
 while i < len(front_look[0]):
     if front_look[0][i] == input_front_list[0] and \
-        front_look[0].count(input_front_list[0]) == 1:
-        print("break")
+                        front_look[0].count(input_front_list[0]) == 1:
+        break
+    elif side_look[i].count(input_side_list[i]) == 1 and \
+            side_look[i][3] == input_side_list[i]:
         break
     else:
         front_look[0][i] = 0
+        side_look[i][3] = 0
     i += 1
 
 
