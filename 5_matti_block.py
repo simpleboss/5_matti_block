@@ -92,5 +92,17 @@ for i in front_look:
 print("max_result ="+str(max_result))
 
 # minimum
-for requirement_1 in front_list:
-    continue
+i = 0
+while i < len(front_look[0]):
+    if front_look[0][i] == input_front_list[0] and \
+        front_look[0].count(input_front_list[0]) == 1:
+        print("break")
+        break
+    else:
+        front_look[0][i] = 0
+    i += 1
+
+
+print_look()
+print("finish")
+
