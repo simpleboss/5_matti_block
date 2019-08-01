@@ -39,19 +39,21 @@ side_look = [[0, 0, 0, 0] for i in range(4)]
 def print_look():
     i = 0
     while i < len(front_look):
-        print(str(i) + str(front_look[i]))
+        print(str(input_front_list[i]) + str(front_look[i]))
         i += 1
     print('')
 
     i = 0
     while i < len(side_look):
-        print(str(i) + str(side_look[i]))
+        print(str(input_side_list[i]) + str(side_look[i]))
         i += 1
 
 
 # input
-front_list = [2, 0, 3, 1]
-side_list = [1, 1, 2, 3]
+input_front_list = [2, 0, 3, 1]
+front_list = input_front_list[:]
+input_side_list = [1, 1, 2, 3]
+side_list = input_side_list[:]
 
 
 # each floor maximum height calculation and remove 1 from two lists
