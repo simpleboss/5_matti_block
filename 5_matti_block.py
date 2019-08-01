@@ -30,9 +30,25 @@
 # [질/답] [제출 현황] [푼 후(1)]
 # [ 채 점 ] [홈으로]  [뒤 로]
 
+# input
+# input_number = int(input())
+# input_front_list_string = input().split()
+# input_front_list = [int(a) for a in input_front_list_string]
+# front_list = input_front_list[:]
+# input_side_list_string = input().split()
+# input_side_list = [int(a) for a in input_side_list_string]
+# side_list = input_side_list[:]
+
+# input
+input_number = 3
+input_front_list = [1, 1, 1]
+front_list = input_front_list[:]
+input_side_list = [1, 1, 1]
+side_list = input_side_list[:]
+
 # build front and side look
-front_look = [[0, 0, 0, 0] for i in range(4)]
-side_look = [[0, 0, 0, 0] for i in range(4)]
+front_look = [[0 for j in range(input_number)] for i in range(input_number)]
+side_look =  [[0 for j in range(input_number)] for i in range(input_number)]
 
 
 # display front and side look
@@ -49,22 +65,15 @@ def print_look():
         i += 1
 
 
-# input
-input_front_list = [2, 0, 3, 1]
-front_list = input_front_list[:]
-input_side_list = [1, 1, 2, 3]
-side_list = input_side_list[:]
-
-
 # each floor maximum height calculation and remove 1 from two lists
-def max_floor_calculation():
+def max_block_display_calculation():
     i = 0
     while i < len(front_list):
         j = 0
         while j < len(side_list):
             if front_list[i] >= 1 and side_list[j] >= 1:
-                front_look[i][j] += 1
-                side_look[j][len(side_list)-1-i] += 1
+                    front_look[i][j] += 1
+                    side_look[j][len(side_list)-1-i] += 1
             j += 1
         i += 1
 
@@ -79,33 +88,57 @@ def max_floor_calculation():
 
 # display result of loop for maximum height
 while 1 in front_list and 1 in side_list:
-    print('==============')
-    max_floor_calculation()
-    print_look()
-    print(front_list, side_list)
+    max_block_display_calculation()
+    # print_look()
+    # print(front_list, side_list)
 
-# print maximum height
+# print maximum number of blocks
 max_result = 0
-for i in front_look:
-    for j in i:
-        max_result += j
-print("max_result ="+str(max_result))
-
-# minimum
-i = 0
-while i < len(front_look[0]):
-    if front_look[0][i] == input_front_list[0] and \
-                        front_look[0].count(input_front_list[0]) == 1:
-        break
-    elif side_look[i].count(input_side_list[i]) == 1 and \
-            side_look[i][3] == input_side_list[i]:
-        break
-    else:
-        front_look[0][i] = 0
-        side_look[i][3] = 0
-    i += 1
-
+for index_on_line in front_look:
+    for front_look_i in index_on_line:
+        max_result += front_look_i
+# print("max_result ="+str(max_result))
 
 print_look()
-print("finish")
+
+
+def min_block_location_calculation():
+    front_look_i = 0
+    while front_look_i < len(front_look):
+        index_on_line = 0
+        while index_on_line < len(front_look[front_look_i]):
+            if front_look[front_look_i][index_on_line] == input_front_list[front_look_i] and \
+                                front_look[front_look_i].count(input_front_list[front_look_i]) == 1:
+                break
+            side_look_i = 0
+            while side_look_i < len(side_look):
+                # if front_look_i == 0 and index_on_line == 2:
+                    # print("debug")
+                if front_look[front_look_i].count(input_front_list[front_look_i]) > 1 and \
+                        front_look[front_look_i][index_on_line] == input_front_list[front_look_i] and \
+                        side_look[index_on_line][len(side_look)-1-front_look_i] >= input_side_list[index_on_line]:
+                    side_look_i += 1
+                    continue
+                if side_look[index_on_line].count(input_side_list[index_on_line]) == 1 and \
+                        side_look[index_on_line][len(side_list) - 1 - front_look_i] == input_side_list[index_on_line]:
+                    break
+                else:
+                    front_look[front_look_i][index_on_line] = 0
+                    side_look[index_on_line][len(side_list) - 1 - front_look_i] = 0
+                side_look_i += 1
+            index_on_line += 1
+        front_look_i += 1
+
+
+# minimum
+min_block_location_calculation()
+
+# print minimum number of blocks
+min_result = 0
+for index_on_line in front_look:
+    for front_look_i in index_on_line:
+        min_result += front_look_i
+
+# print_look()
+print(min_result, max_result)
 
